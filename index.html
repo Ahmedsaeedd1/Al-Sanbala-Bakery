@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مخبز السنبلة | طازة كل يوم</title>
+  
+  <!-- خط كايرا (Cairo) من Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #c26723;
+      --primary-dark: #9a4d13;
+      --primary-light: #fef4ec;
+      --accent: #d97706;
+      --bg: #faf7f2;
+      --surface: #ffffff;
+      --surface-border: #ede6dc;
+      --text: #26211d;
+      --text-muted: #6e655f;
+      --whatsapp: #25d366;
+      --whatsapp-hover: #1ebc57;
+      --shadow-sm: 0 2px 8px rgba(38, 33, 29, 0.05);
+      --shadow-md: 0 8px 24px rgba(38, 33, 29, 0.08);
+      --shadow-lg: 0 16px 36px rgba(38, 33, 29, 0.12);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Header / Hero */
+    .hero {
+      background: linear-gradient(180deg, #f7efe4 0%, var(--bg) 100%);
+      padding: 3.5rem 1rem 3rem;
+      text-align: center;
+      border-bottom: 1px solid var(--surface-border);
+      position: relative;
+    }
+
+    .badge-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #f3e5d5;
+      color: var(--primary-dark);
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 900;
+      color: var(--primary-dark);
+      letter-spacing: -0.5px;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-slogan {
+      font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto;
+      font-weight: 500;
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: #dfcdb9;
+    }
+
+    .product-info h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .product-unit {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .product-note {
+      font-size: 0.82rem;
+      color: var(--primary);
+      margin-top: 0.25rem;
+      font-weight: 600;
+    }
+
+    .product-price-box {
+      text-align: left;
+      flex-shrink: 0;
+      margin-right: 1rem;
+      background: var(--primary-light);
+      padding: 0.5rem 0.85rem;
+      border-radius: 12px;
+      border: 1px solid #f9dec5;
+    }
+
+    .product-price {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      white-space: nowrap;
+    }
+
+    /* Two-column Info Layout */
+    .info-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .info-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #f2ece4;
+    }
+
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--primary-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .info-card-header h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    /* Hours Table */
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .hours-table tr {
+      border-bottom: 1px dashed #efe9e0;
+    }
+
+    .hours-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .hours-table td {
+      padding: 0.85rem 0;
+      font-size: 1rem;
+    }
+
+    .hours-day {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .hours-time {
+      text-align: left;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    /* Contact Details */
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .contact-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-label {
+      font-weight: 700;
+      color: var(--text);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-value {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    /* Phone & WhatsApp Group */
+    .phone-whatsapp-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.35rem;
+    }
+
+    .phone-number {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text);
+      direction: ltr;
+      unicode-bidi: isolate;
+      letter-spacing: 0.5px;
+    }
+
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--whatsapp);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 0.45rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    }
+
+    .whatsapp-btn:hover {
+      background-color: var(--whatsapp-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+    }
+
+    .whatsapp-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* Notice / Important Notes */
+    .notice-card {
+      background: #fdfaf6;
+      border: 1px dashed #e4d7c6;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-top: 1.75rem;
+    }
+
+    .notice-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .notice-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .notice-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .notice-item::before {
+      content: "•";
+      color: var(--accent);
+      font-size: 1.5rem;
+      line-height: 0;
+    }
+
+    /* Contact Form Section */
+    .contact-form-section {
+      padding: 3rem 0;
+    }
+
+    .contact-form-card {
+      max-width: 640px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      padding: 2.25rem 2rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-group {
+      margin-bottom: 1.35rem;
+      text-align: right;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 700;
+      color: var(--text);
+      font-size: 1rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .required-star {
+      color: #e11d48;
+      margin-right: 0.2rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1.5px solid #dcd4c9;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--text);
+      background-color: #fdfcfb;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      background-color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(194, 103, 35, 0.15);
+    }
+
+    .form-control::placeholder {
+      color: #a89f97;
+      font-size: 0.95rem;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      padding: 0.95rem 1.5rem;
+      font-family: inherit;
+      font-size: 1.15rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      box-shadow: 0 4px 14px rgba(154, 77, 19, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(154, 77, 19, 0.4);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* رسائل التنبيه بعد الإرسال */
+    .form-alert {
+      display: none;
+      padding: 1.1rem 1.25rem;
+      border-radius: 12px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 1.25rem;
+      animation: alertFadeIn 0.3s ease;
+    }
+
+    @keyframes alertFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .alert-success {
+      background-color: #ecfdf5;
+      border: 1.5px solid #a7f3d0;
+      color: #065f46;
+    }
+
+    .alert-error {
+      background-color: #fff1f2;
+      border: 1.5px solid #fecdd3;
+      color: #9f1239;
+    }
+
+    /* Footer */
+    footer {
+      background: #f2ece2;
+      border-top: 1px solid var(--surface-border);
+      padding: 2.25rem 0;
+      text-align: center;
+      margin-top: 2rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    footer p {
+      margin-bottom: 0.35rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- قسم الترويسة والتعريف بالمخبز (Hero Section) -->
+  <header class="hero">
+    <div class="container">
+      <div class="badge-top">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+        مخبز عيلة صغير
+      </div>
+      <h1 class="hero-title">مخبز السنبلة</h1>
+      <p class="hero-slogan">«عيش وحلويات طازة كل يوم، من فرننا لبيتك.»</p>
+      <p class="hero-desc">بنخبز كل يوم الصبح بدري، ومفيش حاجة عندنا بايتة.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- قسم المنتجات والأسعار (Products Section) -->
+    <section class="section">
+      <h2 class="section-title">قائمة المنتجات والأسعار</h2>
+      <p class="section-subtitle">طازة يومياً بأعلى جودة من الفرن مباشرة</p>
+
+      <div class="products-grid">
+        <!-- عيش فينو -->
+        <article class="product-card">
+          <div class="product-info">
+            <h3>عيش فينو</h3>
+            <span class="product-unit">5 أرغفة</span>
+          </div>
+          <div class="product-price-box">
+            <span class="product-price">15 جنيه</span>
+          </div>
+        </article>
+
+        <!-- عيش بلدي مخصوص -->
+        <article class="product-card">
+          <div class="product-info">
+            <h3>عيش بلدي مخصوص</h3>
+            <span class="product-unit">5 أرغفة</span>
+          </div>
+          <div class="product-price-box">
+            <span class="product-price">10 جنيه</span>
+          </div>
+        </article>
+
+        <!-- كرواسون سادة -->
+        <article class="product-card">
+          <div class="product-info">
+            <h3>كرواسون سادة</h3>
+            <span class="product-unit">القطعة</span>
+          </div>
+          <div class="product-price-box">
+            <span class="product-price">20 جنيه</span>
+          </div>
+        </article>
+
+        <!-- كرواسون شوكولاتة -->
+        <article class="product-card">
+          <div class="product-info">
+            <h3>كرواسون شوكولاتة</h3>
+            <span class="product-unit">القطعة</span>
+          </div>
+          <div class="product-price-box">
+            <span class="product-price">28 جنيه</span>
+          </div>
+        </article>
+
+        <!-- بسبوسة -->
+        <article class="product-card">
+          <div class="product-info">
+            <h3>بسبوسة</h3>
+            <span class="product-unit">الكيلو</span>
+          </div>
+          <div class="product-price-box">
+            <span class="product-price">160 جنيه</span>
+          </div>
+        </article>
+
+        <!-- تورتة عيد ميلاد -->
+        <article class="product-card">
+          <div class="product-info">
+            <h3>تورتة عيد ميلاد</h3>
+            <span class="product-unit">حسب الطلب</span>
+            <div class="product-note">بالحجز قبلها بيومين</div>
+          </div>
+          <div class="product-price-box">
+            <span class="product-price">من 450 جنيه</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- تفاصيل المواعيد والعنوان والتواصل -->
+    <section class="section" style="padding-top: 0;">
+      <div class="info-layout">
+        
+        <!-- بطاقة مواعيد العمل (Opening Hours) -->
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3>مواعيد العمل</h3>
+          </div>
+
+          <table class="hours-table">
+            <tbody>
+              <tr>
+                <td class="hours-day">السبت للخميس</td>
+                <td class="hours-time">7 الصبح – 11 بالليل</td>
+              </tr>
+              <tr>
+                <td class="hours-day">الجمعة</td>
+                <td class="hours-time">2 الضهر – 11 بالليل</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- بطاقة العنوان والتواصل (Address & Contact) -->
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <h3>العنوان والتواصل</h3>
+          </div>
+
+          <div class="contact-item">
+            <div>
+              <span class="contact-label">العنوان:</span>
+              <p class="contact-value">12 شارع النخيل، جنب الصيدلية</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div style="width: 100%;">
+              <span class="contact-label">رقم الموبايل:</span>
+              <div class="phone-whatsapp-group">
+                <span class="phone-number">0100 000 0000</span>
+                <!-- زر واتساب المطلوب إضافته بجانب رقم الموبايل -->
+                <a href="https://wa.me/201000000000" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12.031 2C6.51 2 2.016 6.494 2.016 12.016c0 1.95.558 3.774 1.524 5.318L2 22l4.829-1.503c1.48.884 3.208 1.401 5.202 1.401 5.52 0 10.016-4.494 10.016-10.016S17.551 2 12.031 2zm5.748 14.283c-.244.685-1.42 1.309-1.956 1.385-.506.071-1.15.101-3.649-.933-2.91-1.205-4.787-4.185-4.933-4.38-.146-.195-1.18-1.57-1.18-2.991 0-1.42.742-2.119 1.006-2.408.263-.288.575-.361.768-.361.194 0 .389.002.559.01.181.009.423-.069.662.506.244.585.83 2.023.903 2.169.073.146.122.317.024.512-.097.195-.146.317-.292.487-.146.171-.31.382-.442.513-.146.146-.299.305-.129.597.17.292.756 1.246 1.621 2.016 1.112.989 2.049 1.296 2.341 1.442.292.146.463.122.634-.073.171-.195.731-.853.926-1.146.195-.292.39-.244.658-.146.268.098 1.706.804 1.998.95.292.146.487.219.559.341.073.122.073.707-.171 1.392z"/>
+                  </svg>
+                  تواصل عبر واتساب
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div>
+              <span class="contact-label">خدمة التوصيل:</span>
+              <p class="contact-value">بنوصّل في حدود 3 كيلو، والطلب الأقل 100 جنيه.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ملاحظات هامة للزبائن (اللي مش عندنا) -->
+      <div class="notice-card">
+        <h4 class="notice-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          معلومات تهمك قبل الطلب:
+        </h4>
+        <ul class="notice-list">
+          <li class="notice-item">الدفع كاش أو إنستاباي عند الاستلام (مفيش دفع أونلاين).</li>
+          <li class="notice-item">مفيش أكل من غير جلوتين.</li>
+          <li class="notice-item">قائمة المخبوزات والأسعار متوفرة بالعربي فقط (مفيش منيو إنجليزي).</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- قسم فورم التواصل (Contact Form Section) -->
+    <section class="section contact-form-section" id="contact-section">
+      <h2 class="section-title">تواصل معنا</h2>
+      <p class="section-subtitle">عندك استفسار أو طلب تورتة؟ ابعتلنا رسالتك وهنرد عليك</p>
+
+      <div class="contact-form-card">
+        <form id="contact-form">
+          
+          <!-- الاسم -->
+          <div class="form-group">
+            <label for="name" class="form-label">
+              <span class="required-star">*</span>الاسم:
+            </label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              class="form-control" 
+              placeholder="اكتب اسمك الكريم" 
+              required
+            >
+          </div>
+
+          <!-- رقم الموبايل -->
+          <div class="form-group">
+            <label for="phone" class="form-label">
+              <span class="required-star">*</span>رقم الموبايل:
+            </label>
+            <input 
+              type="tel" 
+              id="phone" 
+              name="phone" 
+              class="form-control" 
+              placeholder="مثال: 01012345678" 
+              required
+            >
+          </div>
+
+          <!-- الرسالة -->
+          <div class="form-group">
+            <label for="message" class="form-label">
+              <span class="required-star">*</span>الرسالة:
+            </label>
+            <textarea 
+              id="message" 
+              name="message" 
+              class="form-control" 
+              placeholder="اكتب رسالتك أو استفسارك هنا..." 
+              required
+            ></textarea>
+          </div>
+
+          <!-- زر الإرسال -->
+          <button type="submit" id="submit-btn" class="submit-btn">
+            <span>إرسال الرسالة</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+
+          <!-- صندوق التنبيه بعد الإرسال -->
+          <div id="form-alert" class="form-alert" role="alert"></div>
+
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- التذييل (Footer) -->
+  <footer>
+    <div class="container">
+      <p><strong>مخبز السنبلة</strong> · عيش وحلويات طازة كل يوم</p>
+      <p>12 شارع النخيل، جنب الصيدلية · هاتف: 0100 000 0000</p>
+    </div>
+  </footer>
+
+  <!-- كود ربط Supabase وحفظ الرسائل -->
+  <script>
+    /**
+     * إعدادات الربط مع Supabase:
+     * - استخدمنا هنا فقط المفتاح العام (Publishable / anon key).
+     * - لا تضع أبداً المفتاح السري (service_role secret key) في أي كود واجهة أمامية.
+     */
+    const SUPABASE_URL = "https://kcgfgretonnmnykamyjp.supabase.co"; // تم ضبط رابط مشروعك بناءً على إعدادات Supabase
+    const SUPABASE_ANON_KEY = "sb_publishable_zYU9kYhzBv3lWcfrQ3weww_iPqXP8q9";        // ضع هنا مفتاح anon العام (anon key)
+
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formAlert = document.getElementById('form-alert');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const nameInput = document.getElementById('name');
+      const phoneInput = document.getElementById('phone');
+      const messageInput = document.getElementById('message');
+
+      const name = nameInput.value.trim();
+      const phone = phoneInput.value.trim();
+      const message = messageInput.value.trim();
+
+      // التحقق من تعبئة جميع الخانات
+      if (!name || !phone || !message) {
+        showAlert('برجاء ملء جميع الخانات المطلوبة.', 'error');
+        return;
+      }
+
+      // إظهار حالة الإرسال
+      submitBtn.disabled = true;
+      const originalBtnHtml = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span>جاري الإرسال...</span>';
+      formAlert.style.display = 'none';
+
+      try {
+        // إرسال البيانات مباشرة إلى جدول messages في Supabase عبر REST API
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/messages`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({
+            name: name,
+            phone: phone,
+            message: message
+          })
+        });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.message || `خطأ في الخادم: ${response.status}`);
+        }
+
+        // إفراغ الخانات وإظهار رسالة النجاح المحددة نصاً
+        form.reset();
+        showAlert('وصلتنا رسالتك، هنكلّمك في نفس اليوم.', 'success');
+
+      } catch (error) {
+        console.error('Error submitting form:', error);
+
+        // تنبيه في حال كانت إعدادات Supabase لا تزال بالقيم الافتراضية
+        if (SUPABASE_URL.includes('YOUR_PROJECT_ID') || SUPABASE_ANON_KEY.includes('YOUR_SUPABASE_ANON_KEY')) {
+          showAlert('تنبيه: برجاء كتابة رابط مشروعك (SUPABASE_URL) ومفتاح (anon key) داخل ملف index.html.', 'error');
+        } else {
+          showAlert('حدث خطأ أثناء الإرسال. يرجى التأكد من تشغيل جدول messages وسياسة الـ RLS أو التواصل معنا عبر واتساب.', 'error');
+        }
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+      }
+    });
+
+    function showAlert(text, type) {
+      formAlert.textContent = text;
+      formAlert.className = 'form-alert ' + (type === 'success' ? 'alert-success' : 'alert-error');
+      formAlert.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
